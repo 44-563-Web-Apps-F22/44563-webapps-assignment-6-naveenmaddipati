@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"  
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+        <title>Discount Page</title>
+    </head>
+    <body>
+        
+        <h2>naveen kumar maddipati computes discounts</h2>
+        <br>
+        <form action="">
+            <label for="product_amount">Enter base amount</label>
+            <input type="number" name="product_amount" id="product_amount" value="20">
+            <br>
+            <label for="discount_percent">Enter the discount percentage</label>
+            <input type="number" name="discount_percent" id="discount_percent" value="10">
+            <br>
+            <button type="button" onclick="discount()">Apply discount</button>
+        </form>
+        <br>
+        <p id="result">Your results will be displayed here</p>
+        <br>
+
+        
+        <form action="">
+            <input type="radio" id="multiply" name="operation" value="times" onclick="chooseOp()">
+            <label for="multiply">*</label>
+            <br>
+            <input type="radio" name="operation" id="divide" value="divide" onclick="chooseOp()">
+            <label for="divide">/</label>
+            <br>
+            <input type="radio" name="operation" id="exponent" value="exponent" onclick="chooseOp()">
+            <label for="exponent">**</label>
+        </form>
+        <p id="operation_result">Your results will be displayed here</p>
+
+        <script>
+            
+            function discount() {
+                base_value = document.getElementById("product_amount").value
+                discount_value = document.getElementById("discount_percent").value
+                result = ""
+                for(i = 1; i <= 5; i++) {
+                    result += ((i * base_value) - ((i * base_value) * (discount_value)/100))
+                    result += " "
+                }
+                document.getElementById("result").innerHTML = "Discounted amounts for base " + base_value + 
+                                                                " are " + result 
+            }
+            
+            function chooseOp() {
+                amount = document.getElementById("product_amount").value
+                discount_val = document.getElementById("discount_percent").value
+                radio_mul = document.getElementById("multiply").checked
+                radio_div = document.getElementById("divide").checked
+                radio_exp = document.getElementById("exponent").checked
+                if(radio_mul) {
+                    document.getElementById("operation_result").innerHTML = "Amount * Discount = "
+                                                                            + amount * discount_val
+                } else if(radio_div) {
+                    document.getElementById("operation_result").innerHTML = "Amount / Discount = "
+                                                                            + amount / discount_val
+                } else if(radio_exp) {
+                    document.getElementById("operation_result").innerHTML = "Amount ** Discount = "
+                                                                            + amount ** discount_val
+                }
+            }
+        </script>
+    </body>
+</html>
